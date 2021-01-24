@@ -1,0 +1,11 @@
+version: '3'
+services: 
+  web:
+    build:
+      context: . #pick from current directory
+      dockerfile: Dockerfile.dev # because we are not using default Dockerfile
+    ports: 
+      - "3000:3000"
+    volumes:  # we have to put references of the volumes outside the containers to inside
+      - /app/node_modules # do not copy  just referer
+      - .:/app # copy from current directory(outside container) to /app (inside containers)
